@@ -66,6 +66,7 @@ app.post('/register', (req, res) => {
     email: `${email}`,
     password: `${password}`,
     entries: 0,
+
     joined: new Date(),
   }
   tempdataBase.users.push(user);
@@ -82,6 +83,26 @@ app.get('/profile/:id', (req, res) => {
     }
   })
   res.status(404).send('No such user');
+})
+
+app.put('/image', (req,res) => {
+  const { id } = req.body;
+  
+  console.log(id);
+  let found = false;
+  tempdataBase.users.forEach(user => {
+    if (user.id === id)
+    {
+      found = true;
+      user.entries++;
+      return res.json('hola');
+    }
+  });
+
+  if (!found)
+  {
+    res.status(400).json('not found');
+  }
 })
 
 app.listen(port, () => {
