@@ -50,7 +50,16 @@ app.get('/', (req, res) => {
  * */
 
 app.post('/signing', (req, res) => {
-  res.send('Correcto');
+   const { email, password } = req.body;
+   
+   res.json("true")
+   tempdataBase.users.forEach(user => {
+      if (email == user.email && password == user.password)
+      {
+        res.json("true");
+      }
+   });
+   res.json("false");
 })
 
 app.post('/register', (req, res) => {
