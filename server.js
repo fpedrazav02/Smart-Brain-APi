@@ -51,15 +51,20 @@ app.get('/', (req, res) => {
 
 app.post('/signing', (req, res) => {
    const { email, password } = req.body;
-   
-   res.json("true")
+  
+  console.log(req.body);
    tempdataBase.users.forEach(user => {
       if (email == user.email && password == user.password)
-      {
+      { 
+        console.log("Backend coincidence");
         res.json("true");
       }
+      console.log("Email: ", email ,email == user.email);
+      console.log("Password: ", password, password == user.password);
    });
-   res.json("false");
+
+
+   
 })
 
 app.post('/register', (req, res) => {
